@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+    {{massage}}
+</div>
+<div id="app2">
+    {{words}}
+</div>
+
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vue = new Vue({
+        el: "#app1", //绑定dom对象
+        data: {
+            massage: "hello vue"  // 数据
+        }
+
+    });
+
+    let vue1 = new Vue({
+        el: "#app2",
+        data: {
+            words: "listen"
+        }
+    });
+</script>
+</html>

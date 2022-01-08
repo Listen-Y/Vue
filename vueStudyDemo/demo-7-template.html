@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--组件是可复用的Vue实例-->
+    <!--就是一组可以重复使用的模板-->
+</head>
+<body>
+<div id="app8">
+    <ya v-for="item in items" v-bind:ya-value="item"></ya>
+</div>
+
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>Vue.config.productionTip=false</script>
+<script>
+    // 必须大写
+    Vue.component("ya", {
+        props:['yaValue'], // 获取数据
+        template: '<li>{{yaValue}}</li>'
+    });
+
+
+    let app = new Vue({
+        el: '#app8', //绑定dom对象
+        data: {
+            message: '123',  // 数据
+            sex: '男', //如果这里设置了数据,就是默认选择了
+            selected: '',
+            items: [{value: 'A'},
+                {value: 'B'},
+                {value: 'C'},
+                {value: 'D'}]
+        }
+    });
+</script>
+</html>

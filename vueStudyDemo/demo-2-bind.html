@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app3">
+    将这个元素节点的 title特性和Vue 实例的message属性保打一致
+    <span v-bind:title='message'>
+        停几秒
+    </span>
+</div>
+
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>Vue.config.productionTip=false</script>
+<script>
+    let app = new Vue({
+        el: '#app3', //绑定dom对象
+        data: {
+            message: 'hello vue,' + new Date().toLocaleString()  // 数据
+        }
+    });
+
+</script>
+</html>

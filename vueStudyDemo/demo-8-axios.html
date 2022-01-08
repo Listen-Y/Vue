@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app9">
+    <div>{{info.name}}</div>
+    <div>{{info.age}}</div>
+    <div>{{info.cars[0].name}}</div>
+    <div>{{info.cars[0].models[0]}}</div>
+    <a v-bind:href="info.url">baidu</a>
+</div>
+
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>Vue.config.productionTip=false</script>
+<script>
+    let app = new Vue({
+        el: '#app9', //绑定dom对象
+        // 创建钩子函数 mounted, 钩子函数的原理是vue的生命周期
+        mounted(){
+            axios.get('../data.json').then(response=>(
+                this.info=response.data
+            ));
+        },
+        // 数据展示data()此时是一个方法,return表示接受返回的值,使用info定义接受返回值的格式
+        data() {
+            return {
+                info: {
+                    name: null,
+                    age: null,
+                    url: null,
+                    cars: {
+                        name: null,
+                        models: {}
+                    }
+                }
+            }
+        }
+    });
+</script>
+</html>
