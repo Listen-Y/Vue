@@ -11,6 +11,13 @@
     <div>{{info.cars[0].name}}</div>
     <div>{{info.cars[0].models[0]}}</div>
     <a v-bind:href="info.url">baidu</a>
+
+    // 二维数组遍历
+    <li v-for="car in info.cars" >
+        <div v-for="model in car.models">
+            {{model}}
+        </div>
+    </li>
 </div>
 
 </body>
