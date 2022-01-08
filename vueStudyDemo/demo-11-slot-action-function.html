@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app11">
+    <todo>
+        <todo-title slot="todo-title" v-bind:title="titleMessage"></todo-title>
+        <todo-items slot="todo-items"
+                    v-for="item in items"
+                    v-bind:item1="item"
+                    v-on:remove="removeItems(index)" v-bind:key="index"></todo-items>
+    </todo>
+</div>
+
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>Vue.config.productionTip=false</script>
+<script>
+
+    // slot槽其实就是用来进行组件合并的,由name来指定合并哪个组件
+    Vue.component('todo', {
+        template: '<div><slot name="todo-title"></slot><ul><slot name="todo-items"></slot></ul></div>'
+    });
+    Vue.component('todo-title', {
+        props: ['title'],
+        template: '<div>{{title}}</div>'
+    });
+    Vue.component('todo-items', {
+        props: ['item1'],
+        template:'<li>{{item1}} <button @click="remove">click</button></li>', // 这里实现组件方法绑定
+        methods: {
+            remove: function (index) {
+                // 实现组件中删除vue对象中的数据, this.$emit 自定义事件分发
+                this.$emit('remove', index)
+            }
+        }
+    });
+
+    let app = new Vue({
+        el: '#app11', //绑定dom对象
+        data: {
+            message: '123',  // 数据
+            sex: '男', //如果这里设置了数据,就是默认选择了
+            titleMessage: '我是title',
+            items: ['AAA', 'BBB', 'CCC', 'DDD']
+        },
+        methods: {
+            removeItems: function (index) {
+                console.log("删除了",  this.items[index], " ok");
+                this.items.splice(index, 1); // 删除这个元素
+            }
+        }
+    });
+</script>
+</html>
